@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import Question from 'src/models/question';
 import { AudioService } from 'src/services/audioService';
 import { GameService } from 'src/services/gameService';
@@ -15,7 +16,7 @@ export class QuestionComponent implements OnInit {
 
   answer=""
   
-  constructor(private gameService: GameService, private audioService: AudioService) { }
+  constructor(private gameService: GameService, private audioService: AudioService, private router: Router) { }
   
   ngOnInit(): void {
    console.log(this.question)
@@ -37,6 +38,16 @@ export class QuestionComponent implements OnInit {
     this.gameService.increaseCurrentQuestionIndex()
     this.question && this.gameService.updateCurrentQuestion(this.question.id+1)
     this.audioService.stopPlayer()
+  }
+  finishGame(){
+    this.gameService.addAnswer(this.answer)
+    if (this.question){
+      if (this.answer===this.question?.answer){
+        this.gameService.incrementScore()
+      }
+    }
+    this.audioService.stopPlayer()
+    this.router.navigateByUrl('/gameover')
   }
 
 }

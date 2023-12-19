@@ -12,12 +12,16 @@ import { QuestionComponent } from './game/question/question.component';
 import { GameService } from "src/services/gameService";
 import { AudioService } from "src/services/audioService";
 import { ProgressBarComponent } from './game/progress-bar/progress-bar.component';
+import { GameOverComponent } from './game-over/game-over.component';
 
 
-const routes: Routes = [{ path: "", component: HomeComponent }];
+const routes: Routes = [
+  { path: "", component: HomeComponent },
+  { path: "gameover", component: GameOverComponent}
+];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AudioPlayerComponent, AudioPlayerButtonsComponent, GameComponent, QuestionComponent, ProgressBarComponent],
+  declarations: [AppComponent, HomeComponent, AudioPlayerComponent, AudioPlayerButtonsComponent, GameComponent, QuestionComponent, ProgressBarComponent, GameOverComponent],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [GameService, AudioService],
   bootstrap: [AppComponent]

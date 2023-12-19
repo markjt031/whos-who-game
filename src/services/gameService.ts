@@ -22,6 +22,9 @@ export class GameService {
     private answerSource=new BehaviorSubject<string[]>([])
     answers=this.answerSource.asObservable()
 
+    private isWinSource= new BehaviorSubject<boolean>(false)
+    isWin=this.isWinSource.asObservable()
+
     updateQuestions(questions: Question[]){
         this.questionSource.next(questions)
     }
@@ -48,7 +51,16 @@ export class GameService {
         const updatedScore=currentScore+100
         this.scoreSource.next(updatedScore)
     }
-   
+    updateWin(win: boolean){
+        this.isWinSource.next(win)
+    }
+   resetGame(){
+        this.scoreSource.next(0)
+        this.questionSource.next([])
+        this.currentQuestionIndexSource.next(0)
+        this.answerSource.next([])
+        this.currentQuestionSource.next(undefined)
+   }
 
 
 }
