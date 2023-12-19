@@ -13,8 +13,8 @@ import { Component, OnInit } from "@angular/core";
 export class HomeComponent implements OnInit {
   constructor() {}
 
-  // genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
-  // selectedGenre: String = "";
+  settingsShown: boolean = true
+
   // authLoading: boolean = false;
   // configLoading: boolean = false;
   // token: String = "";
@@ -43,40 +43,38 @@ export class HomeComponent implements OnInit {
   //     this.token = newToken.value;
   //     this.loadGenres(newToken.value);
   //   });
-  // }
+  }
 
   // loadGenres = async (t: any) => {
   //   this.configLoading = true;
 
-    // #################################################################################
-    // DEPRECATED!!! Use only for example purposes
-    // DO NOT USE the recommendations endpoint in your application
-    // Has been known to cause 429 errors
-    // const response = await fetchFromSpotify({
-    //   token: t,
-    //   endpoint: "recommendations/available-genre-seeds",
-    // });
-    // console.log(response);
-    // #################################################################################
+  //   #################################################################################
+  //   DEPRECATED!!! Use only for example purposes
+  //   DO NOT USE the recommendations endpoint in your application
+  //   Has been known to cause 429 errors
+  //   const response = await fetchFromSpotify({
+  //     token: t,
+  //     endpoint: "recommendations/available-genre-seeds",
+  //   });
+  //   console.log(response);
+  //   #################################################################################
     
-    // this.genres = [
-    //   "rock",
-    //   "rap",
-    //   "pop",
-    //   "country",
-    //   "hip-hop",
-    //   "jazz",
-    //   "alternative",
-    //   "j-pop",
-    //   "k-pop",
-    //   "emo"
-    // ]
-    // this.configLoading = false;
-  };
+  //   this.genres = [
+  //     "rock",
+  //     "rap",
+  //     "pop",
+  //     "country",
+  //     "hip-hop",
+  //     "jazz",
+  //     "alternative",
+  //     "j-pop",
+  //     "k-pop",
+  //     "emo"
+  //   ]
+  //   this.configLoading = false;
+  // };
 
-  // setGenre(selectedGenre: any) {
-  //   this.selectedGenre = selectedGenre;
-  //   console.log(this.selectedGenre);
-  //   console.log(TOKEN_KEY);
-  // }
+  toggleSettings() {
+    this.settingsShown = !this.settingsShown
+  }
 }
