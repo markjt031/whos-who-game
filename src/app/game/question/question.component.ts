@@ -21,7 +21,7 @@ export class QuestionComponent implements OnInit {
    console.log(this.question)
   }
   changeAnswer(answer: string){
-    this.answer=answer.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+    this.answer=answer.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,"")
   }
   onClick(){
     this.audioService.stopPlayer()

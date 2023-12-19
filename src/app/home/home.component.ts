@@ -121,7 +121,7 @@ export class HomeComponent implements OnInit {
         .sort(()=>Math.random()-0.5)
       for (let i=0; i<10; i++){
         this.songs.push({
-          name: songs[i].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""),
+          name: songs[i].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,""),
           artist: songs[i].artists[0].name,
           preview_url: songs[i].preview_url
         })
