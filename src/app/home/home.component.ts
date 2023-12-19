@@ -117,6 +117,7 @@ export class HomeComponent implements OnInit {
       let songs=playlist.tracks.items
         .map((item: any)=>item.track)
         .filter((song: any)=>song.preview_url)
+        .filter((song: any)=>!(song.name.toLowerCase().includes('remaster') || song.name.toLowerCase().includes('remix')))
         .sort(()=>Math.random()-0.5)
       for (let i=0; i<10; i++){
         this.songs.push({
