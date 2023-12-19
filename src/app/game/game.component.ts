@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Question from 'src/models/question';
 import Song from 'src/models/song';
+import { AudioService } from 'src/services/audioService';
 import { GameService } from 'src/services/gameService';
+
 
 @Component({
   selector: 'app-game',
@@ -19,9 +21,10 @@ export class GameComponent implements OnInit {
  score: number=0
  receivedAnswer: string = ""
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private audioService: AudioService) {}
 
   ngOnInit(): void {
+    this.audioService.songsList.subscribe(songsList=>this.songs=songsList)
     this.generateQuestions(this.mode)
     this.gameService.updateQuestions(this.questions)
     this.gameService.currentQuestionIndex.subscribe(currentQuestionIndex=>this.currentQuestionIndex=currentQuestionIndex)

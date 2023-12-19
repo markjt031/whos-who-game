@@ -13,7 +13,7 @@ const TOKEN_KEY = "whos-who-access-token";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private audioService: AudioService) {}
 
   genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
   selectedGenre: String = "";
@@ -127,14 +127,13 @@ export class HomeComponent implements OnInit {
           preview_url: songs[i].preview_url
         })
       }
-      
       console.log(this.songs)
+      this.audioService.updateSongsList(this.songs)
     })
   }
 
   setGenre(selectedGenre: any) {
     this.selectedGenre = selectedGenre;
     console.log(this.selectedGenre);
-    console.log(TOKEN_KEY);
   }
 }
