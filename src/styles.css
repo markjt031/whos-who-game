@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --color-bg-main: #092635;
+    --color-secondary: #1b4242;
+    --color-text: #9EC8B9;
+    --color-button: #5c8374;
+}
+.capitalize{
+    text-transform: capitalize;
+}
+body{
+    background: var(--color-bg-main);
+    color: var(--color-text)
+}
