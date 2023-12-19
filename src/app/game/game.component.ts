@@ -24,7 +24,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.generateQuestions('title')
     this.gameService.updateQuestions(this.questions)
-    this.gameService.currentQuestionIndex.subscribe(currentQuestionIndex=>this.currentQuestionIndex=this.currentQuestionIndex)
+    this.gameService.currentQuestionIndex.subscribe(currentQuestionIndex=>this.currentQuestionIndex=currentQuestionIndex)
     this.gameService.updateCurrentQuestion(this.currentQuestionIndex)
     this.gameService.currentQuestion.subscribe(currentQuestion=>this.currentQuestion=currentQuestion) 
     this.gameService.score.subscribe(score=>this.score=score)

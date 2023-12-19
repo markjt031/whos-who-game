@@ -12,5 +12,6 @@
         />
         <button *ngIf="question.id<9" type="submit">Next Question</button>
         <button *ngIf="question.id==9" type="submit">Finish Game</button>
-    </form>    
+    </form> 
+    <app-progress-bar *ngIf="question.id<9" [currentQuestionIndex]="question.id"></app-progress-bar>   
 </div>
