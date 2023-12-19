@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AudioService } from 'src/services/audioService';
 
 
 
@@ -13,16 +14,17 @@ export class AudioPlayerButtonsComponent implements OnInit {
   isPlaying: boolean=false
   timer: NodeJS.Timer | undefined=undefined 
 
-  constructor() { }
+  constructor(private audioService: AudioService) { }
 
   ngOnInit(): void {
-   
+   this.audioService.isPlaying.subscribe(isPlaying=>this.isPlaying=isPlaying)
   }
   //using timers is the only way I could figure out how to get
   //the clip to be 10 seconds and also pausable with howler.js
   play(){
     if(this.player){
-      this.isPlaying=true
+      
+      this.audioService.updateIsPlaying(true)
       this.player.play()
       this.timer=setTimeout(()=>{
         this.player?.stop()
@@ -35,10 +37,11 @@ export class AudioPlayerButtonsComponent implements OnInit {
   }
   pause(){
     this.player?.pause()
-    this.isPlaying=false
+    this.audioService.updateIsPlaying(false)
   }
   stop(){
     this.player?.stop()
+    this.audioService.updateIsPlaying(false)
   }
   clearTimer(){
     this.timer && clearTimeout(this.timer)

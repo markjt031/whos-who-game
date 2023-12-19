@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   playlists={
     'alternative': "37i9dQZF1DX9GRpeH4CL0S",
     'christmas': "37i9dQZF1DX6R7QUWePReA",
+    'classic rock': "37i9dQZF1DXdOEFt9ZX0dh",
     'emo': "37i9dQZF1DX9wa6XirBPv8",
   }
 
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit {
         this.authLoading = false;
         this.token = storedToken.value;
         this.loadGenres(storedToken.value);
-        this.getPlaylist(this.playlists.alternative)
+        this.getPlaylist(this.playlists['classic rock'])
         return;
       }
     }
@@ -86,7 +87,7 @@ export class HomeComponent implements OnInit {
     ]
     this.configLoading = false;
   };
-
+  
   getSong = async(title: string, artist: string)=>{
     const response= await fetchFromSpotify({
       token: this.token,

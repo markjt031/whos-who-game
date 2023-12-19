@@ -8,6 +8,7 @@
         type="text"
         placeholder="Enter answer"
         (keyup)="changeAnswer(box.value)"
+        (click)="onClick()"
         />
         <button *ngIf="question.id<9" type="submit">Next Question</button>
         <button *ngIf="question.id==9" type="submit">Finish Game</button>

@@ -23,6 +23,10 @@ export class QuestionComponent implements OnInit {
   changeAnswer(answer: string){
     this.answer=answer.toLowerCase()
   }
+  onClick(){
+    this.audioService.stopPlayer()
+    this.audioService.updateIsPlaying(false)
+  }
   onSubmit(){
     this.gameService.addAnswer(this.answer)
     if (this.question){

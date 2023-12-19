@@ -21,7 +21,7 @@ export class AudioPlayerComponent implements OnInit {
       src: [this.trackUrl],
       format: ['mp3'],
       autoplay: false,
-      volume: 1.0
+      volume: 0.5
     })
     this.audioService.setPlayer(this.player)
   }
