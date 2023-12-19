@@ -8,7 +8,7 @@
 		</select>
 	</div>
 	<button [ngClass]="settingsForm.invalid ? 'disabled' : ''" (click)="showErrors()">Save</button>
-	<ng-container *ngIf="showingErrors">
+	<ng-container *ngIf="showingErrors && !settingsForm.controls['selectedGenre'].dirty">
 		<div class="error">Please select a genre</div>
 	</ng-container>
 </form>
