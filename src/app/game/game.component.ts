@@ -35,6 +35,10 @@ export class GameComponent implements OnInit {
   //this will take the mode from the config when the config is set up
   //all it does is turn the songs into questions with an answer and numbered id
   generateQuestions(mode: string){
+    if (!this.mode){
+      this.mode='title'
+      mode='title'
+    }
     if (mode === 'title'){
       console.log(this.songs.length)
       for (let i=0; i<this.songs.length; i++){

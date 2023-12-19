@@ -1,4 +1,4 @@
-<div *ngIf="authLoading || configLoading">Loading...</div>
+<!-- <div *ngIf="authLoading || configLoading">Loading...</div>
 <div *ngIf="!authLoading && !configLoading">
   Genre:
   <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)">
@@ -7,5 +7,19 @@
       {{ genre }}
     </option>
   </select>
+</div> -->
+<div class="navbar">
+  <div class="settingsItem" (click)="toggleSettings()">Settings</div>
 </div>
-<app-game *ngIf="songs[0]" [songs]="songs" mode="title"></app-game>
+
+<app-settings
+  *ngIf="settingsShown"
+  (toggleSettingsEvent)="toggleSettings()"
+></app-settings>
+
+<div class="main">
+  <h1>Who's Who</h1>
+  <h3>Listen to the song.  Guess the name!</h3>
+  <button class="button" routerLink="game">Play!</button>
+</div>
+
