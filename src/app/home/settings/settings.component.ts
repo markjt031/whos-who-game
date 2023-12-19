@@ -13,6 +13,8 @@ export class SettingsComponent implements OnInit {
   @Output() toggleSettingsEvent = new EventEmitter<void>()
 
   genres: string[] = []
+  showingErrors: boolean = false
+  
   settingsForm: FormGroup = new FormGroup({
     selectedGenre: new FormControl<string>('', [Validators.required])
   })
@@ -30,16 +32,23 @@ export class SettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.settingsData.updateGenre(
-      this.settingsForm.controls['selectedGenre'].value
-    )
-    this.passToggleSettings()
-
-    console.log(this.settingsData.genre) // log observable
+    if(this.settingsForm.valid) {
+      this.settingsData.updateGenre(
+        this.settingsForm.controls['selectedGenre'].value
+      )
+      this.passToggleSettings()
+  
+      console.log(this.settingsData.genre) // log observable
+      console.log(this.settingsForm.controls['selectedGenre'].errors)
+    }
   }
 
   passToggleSettings() {
     this.toggleSettingsEvent.emit()
+  }
+
+  showErrors() {
+    this.showingErrors = true
   }
 
 }

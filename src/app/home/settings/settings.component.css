@@ -1,8 +1,19 @@
 .menu {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	gap: 1vh;
 
 	position: absolute;
 	right: 0;
 	padding-right: 10px;
+}
+
+.disabled {
+  color: grey;
+  opacity: 0.5;
+}
+
+.error {
+	color: indianred;
 }
