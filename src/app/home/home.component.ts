@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import fetchFromSpotify, { request } from "../../services/api";
+import Song from "src/models/song";
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
@@ -18,6 +19,15 @@ export class HomeComponent implements OnInit {
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
+  song: Song | undefined=undefined
+  songs: Song[] =[]
+
+  //Hard coded playlist ids for certain genres
+  playlists={
+    'alternative': "37i9dQZF1DX9GRpeH4CL0S",
+    'christmas': "37i9dQZF1DX6R7QUWePReA",
+    'emo': "37i9dQZF1DX9wa6XirBPv8",
+  }
 
   ngOnInit(): void {
     this.authLoading = true;
@@ -29,6 +39,7 @@ export class HomeComponent implements OnInit {
         this.authLoading = false;
         this.token = storedToken.value;
         this.loadGenres(storedToken.value);
+        this.getPlaylist(this.playlists.alternative)
         return;
       }
     }
@@ -42,7 +53,9 @@ export class HomeComponent implements OnInit {
       this.authLoading = false;
       this.token = newToken.value;
       this.loadGenres(newToken.value);
+      this.getPlaylist(this.playlists.alternative)
     });
+    
   }
 
   loadGenres = async (t: any) => {
@@ -73,6 +86,47 @@ export class HomeComponent implements OnInit {
     ]
     this.configLoading = false;
   };
+
+  getSong = async(title: string, artist: string)=>{
+    const response= await fetchFromSpotify({
+      token: this.token,
+      endpoint: "search",
+      params: {
+        type: 'track',
+        q: `track:${title} artist:${artist}`
+      }
+    }).then((tracks)=>{
+      console.log(tracks.tracks)
+      if (tracks.tracks.items.length!==0){
+        this.song={
+          artist: tracks.tracks.items[0].artists[0].name,
+          name: tracks.tracks.items[0].name,
+          preview_url: tracks.tracks.items[0].preview_url
+        }
+      }
+    })
+  }
+
+  getPlaylist=async(playlistID: string)=>{
+    const response = await fetchFromSpotify({
+      token: this.token,
+      endpoint: `playlists/${playlistID}`
+    }).then((playlist)=>{
+      console.log(playlist)
+      let songs=playlist.tracks.items
+        .map((item: any)=>item.track)
+        .filter((song: any)=>song.preview_url)
+        .sort(()=>Math.random()-0.5)
+      for (let i=0; i<10; i++){
+        this.songs.push({
+          name: songs[i].name,
+          artist: songs[i].artists[0].name,
+          preview_url: songs[i].preview_url
+        })
+      }
+      console.log(this.songs)
+    })
+  }
 
   setGenre(selectedGenre: any) {
     this.selectedGenre = selectedGenre;

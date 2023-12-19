@@ -1,0 +1,15 @@
+<h1>Guess the Song Title</h1>
+<div *ngIf="question">
+    <h2>Question #{{question.id+1}}</h2>
+    <app-audio-player trackUrl={{question.preview_url}} ></app-audio-player>
+    <form (ngSubmit)="onSubmit()">
+        <input 
+        #box
+        type="text"
+        placeholder="Enter answer"
+        (keyup)="changeAnswer(box.value)"
+        />
+        <button *ngIf="question.id<9" type="submit">Next Question</button>
+        <button *ngIf="question.id==9" type="submit">Finish Game</button>
+    </form>    
+</div>
