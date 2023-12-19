@@ -1,0 +1,7 @@
+<div class="game-container">
+    <h1 class="capitalize title">Guess the {{mode}}</h1>
+    <div class="question" *ngFor="let question of questions">
+        <app-question *ngIf="currentQuestion && question.id===currentQuestion.id" [question]="question"></app-question>
+    </div>
+    <h3 class="score">Score: {{score}}</h3>
+</div>
