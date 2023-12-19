@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from 'src/services/gameService';
+import { LeaderboardService } from 'src/services/leaderboardService';
 
 @Component({
   selector: 'app-game-over',
@@ -10,7 +11,7 @@ export class GameOverComponent implements OnInit {
   score: number = 0
   win: boolean = false
   name: string= ""
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private leaderBoardService: LeaderboardService) { }
 
   ngOnInit(): void {
     this.gameService.score.subscribe(score=>this.score=score)
@@ -30,5 +31,6 @@ export class GameOverComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.name)
+    this.leaderBoardService.addEntry({name: this.name, score: this.score})
   }
 }

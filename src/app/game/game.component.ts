@@ -22,7 +22,7 @@ export class GameComponent implements OnInit {
   constructor(private gameService: GameService) {}
 
   ngOnInit(): void {
-    this.generateQuestions('title')
+    this.generateQuestions(this.mode)
     this.gameService.updateQuestions(this.questions)
     this.gameService.currentQuestionIndex.subscribe(currentQuestionIndex=>this.currentQuestionIndex=currentQuestionIndex)
     this.gameService.updateCurrentQuestion(this.currentQuestionIndex)

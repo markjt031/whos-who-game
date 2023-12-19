@@ -123,7 +123,7 @@ export class HomeComponent implements OnInit {
       for (let i=0; i<10; i++){
         this.songs.push({
           name: songs[i].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,""),
-          artist: songs[i].artists[0].name,
+          artist: songs[i].artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,""),
           preview_url: songs[i].preview_url
         })
       }
