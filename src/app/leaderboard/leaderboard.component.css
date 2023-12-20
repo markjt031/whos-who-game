@@ -1,0 +1,17 @@
+.leaderboard {
+	display: flex;
+	flex-direction: column;
+}
+
+ol {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding-left: 1em;
+}
+
+.list-item {
+	display: flex;
+  justify-content: space-between;
+	gap: 15px;
+}

@@ -1,14 +1,39 @@
 .navbar {
 	display: flex;
 	flex-direction: row;
-	justify-content: right;
+	justify-content: flex-end;
 
 	padding: 10px;
+	gap: 3vw;
 	font-size: 120%;
 }
 
-.settingsItem {
+.nav-item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.item-header {
 	cursor: pointer;
+}
+
+.item-body {
+	position: absolute;
+	top: 150%;
+	right: 0;
+	
+	border: 2px solid #9EC8B9;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.leaderboard-body {
+	width: max-content;
+}
+
+.settings-body {
+	width: 9em;
 }
 
 .main {
@@ -22,7 +47,7 @@
 	height: 90vh;
 }
 
-.button {
+.play-button {
 	font-size: 150%;
 
 	margin-top: 3vh;

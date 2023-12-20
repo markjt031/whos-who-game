@@ -1,0 +1,8 @@
+<ol class="leaderboard">
+  <li *ngFor="let scoreEntry of currentLeaderboard">
+		<div class="list-item">
+			<span style="text-align:left;">{{ scoreEntry.name }}</span>
+			<span style="text-align:right;">{{ scoreEntry.score }}</span>
+		</div>
+  </li>
+</ol>

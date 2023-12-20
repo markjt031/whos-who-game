@@ -13,43 +13,21 @@ export class HomeComponent implements OnInit {
   constructor(private audioService: AudioService) {}
 
   settingsShown: boolean = true
+  leaderboardShown: boolean = false
 
-  
-
-  ngOnInit(): void {
-    
-  }
-
-  // loadGenres = async (t: any) => {
-  //   this.configLoading = true;
-
-  //   #################################################################################
-  //   DEPRECATED!!! Use only for example purposes
-  //   DO NOT USE the recommendations endpoint in your application
-  //   Has been known to cause 429 errors
-  //   const response = await fetchFromSpotify({
-  //     token: t,
-  //     endpoint: "recommendations/available-genre-seeds",
-  //   });
-  //   console.log(response);
-  //   #################################################################################
-    
-  //   this.genres = [
-  //     "rock",
-  //     "rap",
-  //     "pop",
-  //     "country",
-  //     "hip-hop",
-  //     "jazz",
-  //     "alternative",
-  //     "j-pop",
-  //     "k-pop",
-  //     "emo"
-  //   ]
-  //   this.configLoading = false;
-  // };
+  ngOnInit(): void {}
 
   toggleSettings() {
     this.settingsShown = !this.settingsShown
+    if (this.leaderboardShown && this.settingsShown) { 
+      this.toggleLeaderboard()
+    }
+  }
+
+  toggleLeaderboard() {
+    this.leaderboardShown = !this.leaderboardShown
+    if (this.leaderboardShown && this.settingsShown) {
+      this.toggleSettings()
+    }
   }
 }
