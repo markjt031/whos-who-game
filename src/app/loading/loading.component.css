@@ -1,24 +1,30 @@
 .container{
     transform: translateY(30%);
-    height: 250px;
     width: 80%;
     margin: 0 auto;
+    height: 300px;
     background-color: rgba(var(--color-secondary),0.85);
     border-radius: 5%;
     filter: drop-shadow(2px 2px 2px rgba(255, 255, 255, .6));
     box-shadow: inset 0 0 0 200px rgb(255,255,255/90%);
-    text-align: center;
+    /* position: relative; */
+    display: flex;
 }
 
-.text-input{
-    width: 80%;
+.loading-animation-container{
+    width: 89px;
+    margin: 0 auto;
+
+}
+.animation{
+    transform: translateX(15px);
+}
+.loading{
     display: block;
-    margin: 10px auto;
-    padding: 7px;
+    text-align: center;
+    margin-top: 100px;
 }
-.error{
-    margin: 5px;
-}
+
 @media screen and (min-width: 640px) {
     .container{
         width: 500px;

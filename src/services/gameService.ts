@@ -25,6 +25,9 @@ export class GameService {
     private isWinSource= new BehaviorSubject<boolean>(false)
     isWin=this.isWinSource.asObservable()
 
+    private gameCompleteSource = new BehaviorSubject<boolean>(false)
+    isComplete=this.gameCompleteSource.asObservable()
+
     updateQuestions(questions: Question[]){
         this.questionSource.next(questions)
     }
@@ -46,9 +49,9 @@ export class GameService {
         const updatedAnswers=[...currentAnswers, answer]
         this.answerSource.next(updatedAnswers)
     }
-    incrementScore(){
+    incrementScore(score: number){
         const currentScore=this.scoreSource.value
-        const updatedScore=currentScore+100
+        const updatedScore=currentScore+score
         this.scoreSource.next(updatedScore)
     }
     updateWin(win: boolean){
@@ -60,6 +63,9 @@ export class GameService {
         this.currentQuestionIndexSource.next(0)
         this.answerSource.next([])
         this.currentQuestionSource.next(undefined)
+   }
+   setComplete(isComplete: boolean){
+    this.gameCompleteSource.next(isComplete)
    }
 
 
