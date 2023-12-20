@@ -9,13 +9,13 @@ import { HomeComponent } from "./home/home.component";
 import { SettingsComponent } from './home/settings/settings.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { AudioPlayerButtonsComponent } from './audio-player/audio-player-buttons/audio-player-buttons.component';
-import { GameComponent } from './game/game.component';
-import { QuestionComponent } from './game/question/question.component';
+import { GameComponent } from './game-page/game/game.component';
+import { QuestionComponent } from './game-page/game/question/question.component';
 import { GameService } from "src/services/gameService";
 import { AudioService } from "src/services/audioService";
-import { ProgressBarComponent } from './game/progress-bar/progress-bar.component';
+import { ProgressBarComponent } from './game-page/game/progress-bar/progress-bar.component';
 import { GameOverComponent } from './game-over/game-over.component';
-import { GamePageComponent } from './game/game-page/game-page.component';
+import { GamePageComponent } from './game-page/game-page.component';
 
 
 const routes: Routes = [

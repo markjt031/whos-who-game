@@ -1,0 +1,19 @@
+<div *ngIf="question">
+    <h2 class="question-title">Question #{{question.id+1}}</h2>
+    <app-audio-player trackUrl={{question.preview_url}} ></app-audio-player>
+    <form (ngSubmit)="onSubmit()">
+        <input 
+        #box
+        type="text"
+        placeholder="Enter your guess"
+        (keyup)="changeAnswer(box.value)"
+        (click)="onClick()"
+        class="text-input game-text-input"
+        />
+        <button *ngIf="question.id<9" type="submit" class="button guess-button">Next Question</button>
+        <button *ngIf="question.id==9" (click)="finishGame()" class="button guess-button">Finish Game</button>
+    </form> 
+    <div>
+        <app-progress-bar *ngIf="question.id<=9" [currentQuestionIndex]="question.id"></app-progress-bar> 
+    </div>  
+</div>

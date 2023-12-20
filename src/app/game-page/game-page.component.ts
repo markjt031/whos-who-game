@@ -3,6 +3,7 @@ import Song from 'src/models/song';
 import fetchFromSpotify, { request } from 'src/services/api';
 import { AudioService } from 'src/services/audioService';
 import { SettingsService } from 'src/app/settings.service';
+import { Router } from '@angular/router';
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
@@ -33,10 +34,13 @@ export class GamePageComponent implements OnInit {
   }
   
   selectedGenre: string= ""
-  constructor(private audioService: AudioService, private settingsService: SettingsService) { }
+  constructor(private audioService: AudioService, private settingsService: SettingsService, private router: Router) { }
 
   ngOnInit(): void {
     this.settingsService.genre.subscribe((genre)=>this.selectedGenre=genre)
+    // if (!this.selectedGenre){
+    //   this.router.navigateByUrl("/")
+    // }
     this.authLoading = true;
     const storedTokenString = localStorage.getItem(TOKEN_KEY);
     if (storedTokenString) {
@@ -45,7 +49,7 @@ export class GamePageComponent implements OnInit {
         console.log("Token found in localstorage");
         this.authLoading = false;
         this.token = storedToken.value;
-        this.getPlaylistOfSelectedGenre(this.selectedGenre)
+        this.getPlaylistOfSelectedGenre(this.selectedGenre.toLowerCase())
         return;
       }
     }

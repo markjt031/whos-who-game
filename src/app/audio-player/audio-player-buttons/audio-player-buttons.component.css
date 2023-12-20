@@ -1,4 +1,27 @@
-.play-icon{
-    background: url('https://api.iconify.design/mdi/play.svg') no-repeat center center / contain;
-    content: url('https://api.iconify.design/mdi/play.svg');
+.play-icon, .pause-icon{
+    filter: invert(99%) sepia(2%) saturate(3286%) hue-rotate(80deg) brightness(81%) contrast(92%);
+    cursor: pointer;
+    height: 30px;
 }
+.play-button, .pause-button{
+    border-radius: 50%;
+    background: none;
+    /* border-left: 1.5px solid #5a5c5b;
+    border-top: 1.5px solid #5a5c5b;
+    border-bottom: 2px solid #333635;
+    border-bottom: 2px solid #333635; */
+    border: solid 0.5px #242424;
+    box-shadow: 2px 2px 2px #242424;
+}
+.play-button:disabled, .pause-button:disabled{
+    border: solid 0.5px #2f2f2f;
+    box-shadow: none;
+    
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    gap: 5px;
+}
+

@@ -1,8 +1,11 @@
 <div>
-    
-    <img src="../../../assets/play.svg">
-    <img src="../../../assets/baseline-pause.svg">
-    <button (click)="play()" [disabled]="isPlaying">Play</button>
-    <button (click)="pause()" [disabled]="!isPlaying">Pause</button>
+    <div class="button-container">
+        <button class="play-button" (click)="play()" [disabled]="isPlaying">
+            <img class="play-icon" src="../../../assets/play.svg">
+        </button>
+        <button class="pause-button" (click)="pause()" [disabled]="!isPlaying">
+            <img class="pause-icon" src="../../../assets/baseline-pause.svg">
+        </button>
+    </div>
 </div>
 
