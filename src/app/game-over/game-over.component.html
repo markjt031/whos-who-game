@@ -1,7 +1,10 @@
 <h1>{{win ? 'You Win' : "Game Over"}}</h1>
 <h2>Your score: {{score}}</h2>
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" [formGroup]="nameForm">
     <label for="name">Enter your name:</label>
-    <input #nameField type="text" name="name" (keyup)="changeName(nameField.value)"/>
+    <input formControlName="name" type="text" name="name" id="name"/>
+    <div *ngIf="submitted && nameForm.controls['name'].errors">
+        <div *ngIf="nameForm.controls['name'].errors['required']" class="error">Name is a required field</div>
+    </div>
     <button type="submit">Submit</button>
 </form>

@@ -13,7 +13,7 @@ export class LeaderboardService{
 
     addEntry(entry: ScoreEntry){
         let currentBoard=this.leaderBoardSource.value
-        let newBoard=[...currentBoard, entry].sort((a, b)=>a.score-b.score)
+        let newBoard=[...currentBoard, entry].sort((a, b)=>b.score-a.score)
         this.leaderBoardSource.next(newBoard)
     }
 }

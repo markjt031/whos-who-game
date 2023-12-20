@@ -6,10 +6,6 @@
 .play-button, .pause-button{
     border-radius: 50%;
     background: none;
-    /* border-left: 1.5px solid #5a5c5b;
-    border-top: 1.5px solid #5a5c5b;
-    border-bottom: 2px solid #333635;
-    border-bottom: 2px solid #333635; */
     border: solid 0.5px #242424;
     box-shadow: 2px 2px 2px #242424;
 }

@@ -1,15 +1,20 @@
 <div *ngIf="question">
     <h2 class="question-title">Question #{{question.id+1}}</h2>
     <app-audio-player trackUrl={{question.preview_url}} ></app-audio-player>
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="answerForm" (ngSubmit)="onSubmit()">
         <input 
-        #box
-        type="text"
-        placeholder="Enter your guess"
-        (keyup)="changeAnswer(box.value)"
-        (click)="onClick()"
-        class="text-input game-text-input"
+            formControlName="answer"
+            name="answer"
+            id="answer"
+            type="text"
+            placeholder="Enter your guess"
+            class="text-input game-text-input"
         />
+        <div *ngIf="submitted && answerForm.controls['answer'].errors">
+            <div class="error" *ngIf="answerForm.controls['answer'].errors['required']">
+                Please enter an answer
+            </div>
+        </div>
         <button *ngIf="question.id<9" type="submit" class="button guess-button">Next Question</button>
         <button *ngIf="question.id==9" (click)="finishGame()" class="button guess-button">Finish Game</button>
     </form> 

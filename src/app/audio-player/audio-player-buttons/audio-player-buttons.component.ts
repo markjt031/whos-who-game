@@ -25,8 +25,6 @@ export class AudioPlayerButtonsComponent implements OnInit {
     if(this.player){
       this.audioService.updateIsPlaying(true)
       this.player.play()
-      console.log(this.player?.seek()*1000)
-      console.log(10000-(this.player?.seek()*1000))
       this.timer=setTimeout(()=>{
         this.player?.stop()
         this.isPlaying=false
@@ -39,7 +37,6 @@ export class AudioPlayerButtonsComponent implements OnInit {
   pause(){
     this.player?.pause()
     this.audioService.updateIsPlaying(false)
-    this.player && console.log(this.player?.seek()*1000)
     this.timer && this.clearTimer(this.timer)
   }
   stop(){

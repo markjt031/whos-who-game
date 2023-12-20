@@ -44,7 +44,12 @@ body{
 .button:hover{
     background-color: rgba(var(--color-text), .8);
 }
-
+.button:disabled{
+    cursor: not-allowed;
+}
+.error {
+	color: indianred;
+}
 
 /* For making a little wavey animation that can be reused on multiple pages */
 .bars {
