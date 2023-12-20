@@ -1,1 +1,2 @@
-<app-game *ngIf="songs[0]"></app-game>
+<app-loading *ngIf="isLoading"></app-loading>
+<app-game *ngIf="!isLoading"></app-game>

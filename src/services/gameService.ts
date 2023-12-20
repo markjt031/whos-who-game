@@ -25,6 +25,9 @@ export class GameService {
     private isWinSource= new BehaviorSubject<boolean>(false)
     isWin=this.isWinSource.asObservable()
 
+    private gameCompleteSource = new BehaviorSubject<boolean>(false)
+    isComplete=this.gameCompleteSource.asObservable()
+
     updateQuestions(questions: Question[]){
         this.questionSource.next(questions)
     }
@@ -60,6 +63,9 @@ export class GameService {
         this.currentQuestionIndexSource.next(0)
         this.answerSource.next([])
         this.currentQuestionSource.next(undefined)
+   }
+   setComplete(isComplete: boolean){
+    this.gameCompleteSource.next(isComplete)
    }
 
 

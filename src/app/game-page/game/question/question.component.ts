@@ -79,6 +79,7 @@ export class QuestionComponent implements OnInit {
     this.audioService.stopPlayer()
     this.audioService.updateIsPlaying(false)
     this.time=0
+    this.gameService.setComplete(true)
     this.router.navigateByUrl('/gameover')
   }
 

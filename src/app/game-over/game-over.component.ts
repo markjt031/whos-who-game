@@ -14,6 +14,7 @@ export class GameOverComponent implements OnInit {
   win: boolean = false
   name: string= ""
   submitted: boolean= false
+  isComplete: boolean = false
 
   nameForm: FormGroup = new FormGroup({
     name: new FormControl<string>("", [Validators.required]),
@@ -23,6 +24,10 @@ export class GameOverComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameService.score.subscribe(score=>this.score=score)
+    this.gameService.isComplete.subscribe(isComplete=>this.isComplete=isComplete)
+    if (!this.isComplete){
+      this.router.navigateByUrl("/")
+    }
     this.checkWin()
   }
 

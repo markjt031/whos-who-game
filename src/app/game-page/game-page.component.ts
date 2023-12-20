@@ -20,6 +20,7 @@ export class GamePageComponent implements OnInit {
   token: String = "";
   song: Song | undefined=undefined
   songs: Song[] =[]
+  isLoading: boolean=true
 
   //Hard coded playlist ids for certain genres. these can be changed to better ones
   playlists={
@@ -37,6 +38,7 @@ export class GamePageComponent implements OnInit {
   constructor(private audioService: AudioService, private settingsService: SettingsService, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLoading=true
     this.settingsService.genre.subscribe((genre)=>this.selectedGenre=genre)
     // if (!this.selectedGenre){
     //   this.router.navigateByUrl("/")
@@ -62,8 +64,7 @@ export class GamePageComponent implements OnInit {
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));
       this.authLoading = false;
       this.token = newToken.value;
-     
-      this.getPlaylist(this.playlists.alternative)
+      this.getPlaylistOfSelectedGenre(this.selectedGenre.toLowerCase())
     });
     
   }
@@ -106,6 +107,7 @@ export class GamePageComponent implements OnInit {
       }
       console.log(this.songs)
       this.audioService.updateSongsList(this.songs)
+      this.isLoading=false
     })
   }
   //Made this because typescript yelled at me for trying to pass the selected genre into the getPlaylists directly
