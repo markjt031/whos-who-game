@@ -41,7 +41,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	
+	background: rgba(var(--color-secondary), .8);
 	font-size: 150%;
 
 	height: 90vh;

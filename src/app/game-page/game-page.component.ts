@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import Song from 'src/models/song';
 import fetchFromSpotify, { request } from 'src/services/api';
 import { AudioService } from 'src/services/audioService';
-import { SettingsService } from 'src/services/settings.service';
+import { SettingsService } from 'src/app/settings.service';
+import { Router } from '@angular/router';
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
@@ -19,6 +20,7 @@ export class GamePageComponent implements OnInit {
   token: String = "";
   song: Song | undefined=undefined
   songs: Song[] =[]
+  isLoading: boolean=true
 
   //Hard coded playlist ids for certain genres. these can be changed to better ones
   playlists={
@@ -33,10 +35,14 @@ export class GamePageComponent implements OnInit {
   }
   
   selectedGenre: string= ""
-  constructor(private audioService: AudioService, private settingsService: SettingsService) { }
+  constructor(private audioService: AudioService, private settingsService: SettingsService, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLoading=true
     this.settingsService.genre.subscribe((genre)=>this.selectedGenre=genre)
+    // if (!this.selectedGenre){
+    //   this.router.navigateByUrl("/")
+    // }
     this.authLoading = true;
     const storedTokenString = localStorage.getItem(TOKEN_KEY);
     if (storedTokenString) {
@@ -45,7 +51,7 @@ export class GamePageComponent implements OnInit {
         console.log("Token found in localstorage");
         this.authLoading = false;
         this.token = storedToken.value;
-        this.getPlaylistOfSelectedGenre(this.selectedGenre)
+        this.getPlaylistOfSelectedGenre(this.selectedGenre.toLowerCase())
         return;
       }
     }
@@ -58,8 +64,7 @@ export class GamePageComponent implements OnInit {
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));
       this.authLoading = false;
       this.token = newToken.value;
-     
-      this.getPlaylist(this.playlists.alternative)
+      this.getPlaylistOfSelectedGenre(this.selectedGenre.toLowerCase())
     });
     
   }
@@ -102,6 +107,7 @@ export class GamePageComponent implements OnInit {
       }
       console.log(this.songs)
       this.audioService.updateSongsList(this.songs)
+      this.isLoading=false
     })
   }
   //Made this because typescript yelled at me for trying to pass the selected genre into the getPlaylists directly

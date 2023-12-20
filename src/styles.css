@@ -1,14 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Concert+One&display=swap');
+
 :root{
-    --color-bg-main: #092635;
-    --color-secondary: #1b4242;
-    --color-text: #9EC8B9;
-    --color-button: #5c8374;
+    --color-bg-dark: 3, 10, 13;
+    --color-bg-main: 10, 37, 51;
+    --color-secondary: 27, 65, 65;
+    --color-text: 157, 200, 185;
+    --color-light: 201, 240, 231;
+}
+
+h1, h2, h3, .button, .text-input{
+    font-family: 'Acme', sans-serif;
 }
 .capitalize{
     text-transform: capitalize;
 }
 body{
-    background: var(--color-bg-main);
-    color: var(--color-text)
+    background: url('./assets/pexels-sebastian-ervi-1763067.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode:hard-light;
+    background-color: rgba(var(--color-bg-main));
+    color: rgba(var(--color-text));
+    
 }
+
+.text-input{
+    padding: 10px;
+    width: 100%;
+    color: rgba(var(--color-bg-dark));
+    background-color: rgba(var(--color-light));
+    border-radius: 20px;
+    border: 1px solid rgba(var(--color-text));
+}
+.text-input::placeholder{
+    color: rgba(var(--color-bg-main));
+}
+.text-input:focus{
+    outline: none !important;
+}
+.button{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px rgba(var(--color-bg-dark));
+    background-color: rgba(var(--color-text));
+    cursor: pointer;
+    color: rgba(var(--color-bg-dark));
+}
+.button:hover{
+    background-color: rgba(var(--color-text), .8);
+}
+.button:disabled{
+    cursor: not-allowed;
+}
+.error {
+	color: indianred;
+}
+

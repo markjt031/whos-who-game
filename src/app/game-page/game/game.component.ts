@@ -20,10 +20,12 @@ export class GameComponent implements OnInit {
  questions: Question[]=[]
  score: number=0
  receivedAnswer: string = ""
+ gameComplete: boolean = false;
 
   constructor(private gameService: GameService, private audioService: AudioService) {}
 
   ngOnInit(): void {
+    this.gameService.setComplete(false)
     this.audioService.songsList.subscribe(songsList=>this.songs=songsList)
     this.generateQuestions(this.mode)
     this.gameService.updateQuestions(this.questions)

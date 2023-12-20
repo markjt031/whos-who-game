@@ -23,14 +23,13 @@ export class AudioPlayerButtonsComponent implements OnInit {
   //the clip to be 10 seconds and also pausable with howler.js
   play(){
     if(this.player){
-      
       this.audioService.updateIsPlaying(true)
       this.player.play()
       this.timer=setTimeout(()=>{
         this.player?.stop()
         this.isPlaying=false
         
-      },10000-this.player?.seek()
+      },10000-(this.player?.seek()*1000)
         
         )
     }
@@ -38,12 +37,14 @@ export class AudioPlayerButtonsComponent implements OnInit {
   pause(){
     this.player?.pause()
     this.audioService.updateIsPlaying(false)
+    this.timer && this.clearTimer(this.timer)
   }
   stop(){
     this.player?.stop()
     this.audioService.updateIsPlaying(false)
+    this.timer && this.clearTimer(this.timer)
   }
-  clearTimer(){
+  clearTimer(timer: NodeJS.Timer){
     this.timer && clearTimeout(this.timer)
   }
 }
