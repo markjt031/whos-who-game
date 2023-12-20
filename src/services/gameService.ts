@@ -46,9 +46,9 @@ export class GameService {
         const updatedAnswers=[...currentAnswers, answer]
         this.answerSource.next(updatedAnswers)
     }
-    incrementScore(){
+    incrementScore(score: number){
         const currentScore=this.scoreSource.value
-        const updatedScore=currentScore+100
+        const updatedScore=currentScore+score
         this.scoreSource.next(updatedScore)
     }
     updateWin(win: boolean){

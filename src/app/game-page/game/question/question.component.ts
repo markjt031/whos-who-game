@@ -20,11 +20,18 @@ export class QuestionComponent implements OnInit {
   clicked: boolean=false
   submitted: boolean=false
   answer=""
-  
+  timer: NodeJS.Timer | undefined = undefined
+  time: number = 0
   constructor(private gameService: GameService, private audioService: AudioService, private router: Router) { }
   
   ngOnInit(): void {
    console.log(this.question)
+   this.timer=setInterval(()=>{
+    this.time++
+   }, 1000)
+  }
+  clearTimer(){
+    clearInterval(this.timer)
   }
   onClick(){
     this.audioService.stopPlayer()
@@ -36,29 +43,49 @@ export class QuestionComponent implements OnInit {
       return
     }
     if (this.answerForm.valid){
+      this.clearTimer()
+      console.log(this.time)
       this.answer=this.answerForm.controls['answer'].value.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,"")
       this.gameService.addAnswer(this.answer)
       if (this.question){
         if (this.answer===this.question?.answer){
-          this.gameService.incrementScore()
+          let points=this.calculateTimeBonus(this.time)+100
+          this.gameService.incrementScore(points)
         }
       }
       this.gameService.increaseCurrentQuestionIndex()
       this.question && this.gameService.updateCurrentQuestion(this.question.id+1)
       this.audioService.stopPlayer()
       this.audioService.updateIsPlaying(false)
+      this.time=0
       this.submitted=false
     }
   }
+  calculateTimeBonus(time: number){
+    let bonus=0
+    if (time<5){
+      return 250
+    }
+    else if (time<10){
+      return 150
+    }
+    else if (time<15){
+      return 50
+    }
+    return 0
+  }
   finishGame(){
+    this.clearTimer()
     this.gameService.addAnswer(this.answer)
     if (this.question){
       if (this.answer===this.question?.answer){
-        this.gameService.incrementScore()
+        let points=this.calculateTimeBonus(this.time)+100
+        this.gameService.incrementScore(points)
       }
     }
     this.audioService.stopPlayer()
     this.audioService.updateIsPlaying(false)
+    this.time=0
     this.router.navigateByUrl('/gameover')
   }
 
