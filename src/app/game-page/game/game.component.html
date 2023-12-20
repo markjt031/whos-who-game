@@ -2,15 +2,7 @@
     <div class="game-container">
         <h1 class="capitalize title">Guess the {{mode}}</h1>
         <div class="animation">
-            <div class="bars">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
+            <app-bar-animation></app-bar-animation>
         </div>
         <div class="question" *ngFor="let question of questions">
             <app-question *ngIf="currentQuestion && question.id===currentQuestion.id" [question]="question"></app-question>
