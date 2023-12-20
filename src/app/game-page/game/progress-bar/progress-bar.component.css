@@ -3,7 +3,7 @@
     height: 20px;
     background-color:#fff;
     border-radius: 50px;
-    margin: 10px auto;
+    margin: 10px auto 0 auto;
     position: relative;
   }
   
@@ -16,6 +16,14 @@
       inset 0 2px 9px  rgba(255,255,255,0.3),
       inset 0 -2px 6px rgba(0,0,0,0.4);
     overflow: hidden;
+  }
+  .progress{
+    margin-top: -2px;
+  }
+  .progress-percent{
+    color: rgba(var(--color-text));
+    font-size: 1rem;
+    float: right;
   }
   .progress-bar:after {
     content: "";
