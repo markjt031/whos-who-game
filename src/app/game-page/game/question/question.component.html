@@ -1,7 +1,7 @@
 <div *ngIf="question">
     <h2 class="question-title">Question #{{question.id+1}}</h2>
     <app-audio-player trackUrl={{question.preview_url}} ></app-audio-player>
-    <form [formGroup]="answerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="answerForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <input 
             formControlName="answer"
             name="answer"

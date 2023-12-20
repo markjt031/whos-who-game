@@ -62,17 +62,10 @@ export class QuestionComponent implements OnInit {
     }
   }
   calculateTimeBonus(time: number){
-    let bonus=0
-    if (time<5){
-      return 250
+    if (time>17.5){
+      return 0
     }
-    else if (time<10){
-      return 150
-    }
-    else if (time<15){
-      return 50
-    }
-    return 0
+    else return 350-20*time
   }
   finishGame(){
     this.clearTimer()
