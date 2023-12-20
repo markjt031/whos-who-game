@@ -1,13 +1,17 @@
-<form class="menu" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+<form class="settings" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
 	<div>
 		<label for="selectedGenre">Genre</label>
+	</div>
+	<div>
 		<select formControlName="selectedGenre">
 			<option *ngFor="let genre of genres" [value]="genre">
 				{{ genre }}
 			</option>
 		</select>
 	</div>
-	<button [ngClass]="settingsForm.invalid ? 'disabled' : ''" (click)="showErrors()">Save</button>
+	<div>
+		<button class="button" [ngClass]="settingsForm.invalid ? 'disabled' : ''" (click)="showErrors()">Save</button>
+	</div>
 	<ng-container *ngIf="showingErrors && !settingsForm.controls['selectedGenre'].dirty">
 		<div class="error">Please select a genre</div>
 	</ng-container>
