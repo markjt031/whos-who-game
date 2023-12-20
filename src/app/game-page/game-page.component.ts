@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Song from 'src/models/song';
 import fetchFromSpotify, { request } from 'src/services/api';
 import { AudioService } from 'src/services/audioService';
-import { SettingsService } from 'src/app/settings.service';
+import { SettingsService } from 'src/services/settings.service';
 import { Router } from '@angular/router';
 
 const AUTH_ENDPOINT =
