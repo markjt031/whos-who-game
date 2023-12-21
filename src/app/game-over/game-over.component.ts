@@ -38,6 +38,7 @@ export class GameOverComponent implements OnInit {
     }
     else{
       this.win=false
+      this.gameService.updateWin(false)
     }
   }
   onSubmit(){
