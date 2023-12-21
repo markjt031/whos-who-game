@@ -47,7 +47,7 @@ export class GameOverComponent implements OnInit {
     }
     this.leaderBoardService.addEntry({name: this.nameForm.controls['name'].value, score: this.score})
     this.gameService.resetGame()
-    this.router.navigateByUrl("/")
+    this.router.navigateByUrl("/leaderboard")
     this.submitted=false
   }
 }
