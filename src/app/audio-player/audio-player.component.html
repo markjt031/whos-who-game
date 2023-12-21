@@ -1,1 +1,18 @@
+<div>
 <app-audio-player-buttons [player]="player"></app-audio-player-buttons>
+<div class="slider-container">
+    <label for="volumeSlider">
+        <img class='volume-icon' src="../../assets/volume.svg">
+    </label>
+    <input
+      type="range"
+      id="volumeSlider"
+      [(ngModel)]="currentVolume"
+      (input)="updateVolume()"
+      min="0"
+      max="1"
+      step="0.01"
+      class="volume-slider"
+    />
+  </div>
+</div>
