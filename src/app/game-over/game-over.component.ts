@@ -15,6 +15,7 @@ export class GameOverComponent implements OnInit {
   name: string= ""
   submitted: boolean= false
   isComplete: boolean = false
+  renderScoreBreakdown: boolean= true
 
   nameForm: FormGroup = new FormGroup({
     name: new FormControl<string>("", [Validators.required]),
@@ -23,6 +24,9 @@ export class GameOverComponent implements OnInit {
   constructor(private gameService: GameService, private leaderBoardService: LeaderboardService, private router: Router) { }
 
   ngOnInit(): void {
+    setTimeout(()=>{
+      this.renderScoreBreakdown=false
+    }, 5000)
     this.gameService.score.subscribe(score=>this.score=score)
     this.gameService.isComplete.subscribe(isComplete=>this.isComplete=isComplete)
     if (!this.isComplete){

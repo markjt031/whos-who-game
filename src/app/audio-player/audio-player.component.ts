@@ -16,7 +16,6 @@ export class AudioPlayerComponent implements OnInit {
   currentVolume = 0.5;
 
   updateVolume() {
-    console.log('Volume updated:', this.currentVolume);
     this.player?.volume(this.currentVolume)
   }
 
