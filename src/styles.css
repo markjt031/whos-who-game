@@ -9,7 +9,7 @@
     --color-light: 201, 240, 231;
 }
 
-h1, h2, h3, .button, .text-input{
+h1, h2, h3, .button, .text-input, label{
     font-family: 'Acme', sans-serif;
 }
 .capitalize{

@@ -1,9 +1,12 @@
 .leaderboard {
 	display: flex;
 	flex-direction: column;
-	max-height: 100px;
+	max-height: 200px;
 	overflow: auto;
 }
+	/* max-height: 100px;
+	overflow: auto;
+}*/
 ::-webkit-scrollbar{    
 	width: 12px;
 }
@@ -31,4 +34,17 @@ ol {
 
 .latest-score {
 	color: lightgreen;
+	animation: pulsate 1.5s infinite;
+	text-shadow: 0 0 5px rgba(217, 255, 0, 0.8);
 }
+@keyframes pulsate {
+	0% {
+	  text-shadow: 0 0 2px rgba(217, 255, 0, 0.8);
+	}
+	50% {
+	  text-shadow: 0 0 5px rgba(217, 255, 0, 0.8);
+	}
+	100% {
+	  text-shadow: 0 0 2px rgba(217, 255, 0, 0.8);
+	}
+  }
