@@ -17,6 +17,9 @@ export class AudioService{
     private songsListSource=new BehaviorSubject<Song[]>([])
     songsList=this.songsListSource.asObservable()
 
+    private volumeSource=new BehaviorSubject<number>(0.5)
+    volume=this.volumeSource.asObservable()
+
     setPlayer(player: Howl){
         this.playerSource.next(player)
     }
@@ -30,7 +33,9 @@ export class AudioService{
         if (this.playerSource.value){
             this.playerSource.value.stop()
         }
-        
+    }
+    updateVolume(volume: number){
+        this.volumeSource.next(volume)
     }
     
 
