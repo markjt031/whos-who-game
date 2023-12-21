@@ -28,6 +28,9 @@ export class GameService {
     private gameCompleteSource = new BehaviorSubject<boolean>(false)
     isComplete=this.gameCompleteSource.asObservable()
 
+    private numberCorrectSource = new BehaviorSubject<number>(0)
+    numberCorrect=this.numberCorrectSource.asObservable()
+
     updateQuestions(questions: Question[]){
         this.questionSource.next(questions)
     }
@@ -42,6 +45,12 @@ export class GameService {
     updateCurrentQuestion(index: number){
         let currentIndex=this.currentQuestionIndexSource.value
         this.currentQuestionSource.next(this.questionSource.value[currentIndex])
+    }
+    incrementNumberCorrect(){
+        let current=this.numberCorrectSource.value
+        let newNumber=current+1
+        console.log(newNumber)
+        this.numberCorrectSource.next(newNumber)
     }
 
     addAnswer(answer: string){
@@ -63,6 +72,7 @@ export class GameService {
         this.currentQuestionIndexSource.next(0)
         this.answerSource.next([])
         this.currentQuestionSource.next(undefined)
+        this.numberCorrectSource.next(0)
    }
    setComplete(isComplete: boolean){
     this.gameCompleteSource.next(isComplete)

@@ -1,13 +1,15 @@
 .container{
-    transform: translateY(30%);
-    height: 250px;
+    height: 400px;
     width: 80%;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
     background-color: rgba(var(--color-secondary),0.85);
     border-radius: 5%;
     filter: drop-shadow(2px 2px 2px rgba(255, 255, 255, .6));
     box-shadow: inset 0 0 0 200px rgb(255,255,255/90%);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .text-input{

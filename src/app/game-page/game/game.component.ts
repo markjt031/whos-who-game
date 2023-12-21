@@ -19,6 +19,7 @@ export class GameComponent implements OnInit {
  currentQuestionIndex: number=0
  questions: Question[]=[]
  score: number=0
+ numberCorrect: number=0
  receivedAnswer: string = ""
  gameComplete: boolean = false;
 
@@ -33,6 +34,7 @@ export class GameComponent implements OnInit {
     this.gameService.updateCurrentQuestion(this.currentQuestionIndex)
     this.gameService.currentQuestion.subscribe(currentQuestion=>this.currentQuestion=currentQuestion) 
     this.gameService.score.subscribe(score=>this.score=score)
+    
   }
   //this will take the mode from the config when the config is set up
   //all it does is turn the songs into questions with an answer and numbered id

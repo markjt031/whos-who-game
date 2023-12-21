@@ -51,6 +51,7 @@ export class QuestionComponent implements OnInit {
         if (this.answer===this.question?.answer){
           let points=this.calculateTimeBonus(this.time)+100
           this.gameService.incrementScore(points)
+          this.gameService.incrementNumberCorrect()
         }
       }
       this.gameService.increaseCurrentQuestionIndex()
@@ -74,6 +75,7 @@ export class QuestionComponent implements OnInit {
       if (this.answer===this.question?.answer){
         let points=this.calculateTimeBonus(this.time)+100
         this.gameService.incrementScore(points)
+        this.gameService.incrementNumberCorrect()
       }
     }
     this.audioService.stopPlayer()

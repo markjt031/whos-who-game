@@ -20,6 +20,7 @@ import { LeaderboardComponent } from './leaderboard-page/leaderboard/leaderboard
 import { BarAnimationComponent } from './loading/bar-animation/bar-animation.component';
 import { LoadingComponent } from './loading/loading.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
+import { ScoreBreakdownComponent } from './score-breakdown/score-breakdown.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SettingsComponent, AudioPlayerComponent, AudioPlayerButtonsComponent, GameComponent, QuestionComponent, ProgressBarComponent, GameOverComponent, GamePageComponent, LeaderboardComponent, BarAnimationComponent, LoadingComponent, LeaderboardPageComponent],
+  declarations: [AppComponent, HomeComponent, SettingsComponent, AudioPlayerComponent, AudioPlayerButtonsComponent, GameComponent, QuestionComponent, ProgressBarComponent, GameOverComponent, GamePageComponent, LeaderboardComponent, BarAnimationComponent, LoadingComponent, LeaderboardPageComponent, ScoreBreakdownComponent],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes)],
   providers: [GameService, AudioService],
   bootstrap: [AppComponent]
