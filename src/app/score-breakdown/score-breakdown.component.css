@@ -18,7 +18,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 0.8s forwards;
     opacity: 0;
-    color: rgba(var(--color-bg-dark))
+    color: rgba(var(--color-bg-dark));
   }
   .correct-questions{
     animation-delay: 1000ms;
@@ -27,7 +27,7 @@
     animation-delay: 2000ms;
   }
   .total-score{
-    animation-delay: 3000ms
+    animation-delay: 3000ms;
   }
   
   @keyframes fadeInUp {
