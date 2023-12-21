@@ -22,7 +22,6 @@
   }
   .progress-percent{
     color: rgba(var(--color-text));
-    font-size: 1rem;
     float: right;
   }
   .progress-bar:after {

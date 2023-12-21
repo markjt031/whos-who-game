@@ -22,7 +22,8 @@ body{
     background-blend-mode:hard-light;
     background-color: rgba(var(--color-bg-main));
     color: rgba(var(--color-text));
-    
+    padding: 0;
+    margin: 0;
 }
 
 .text-input{
