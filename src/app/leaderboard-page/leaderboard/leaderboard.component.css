@@ -15,3 +15,7 @@ ol {
   justify-content: space-between;
 	gap: 15px;
 }
+
+.latest-score {
+	color: lightgreen;
+}

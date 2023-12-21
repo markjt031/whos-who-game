@@ -1,8 +1,10 @@
 <ol class="leaderboard">
-  <li *ngFor="let scoreEntry of currentLeaderboard">
-		<div class="list-item">
-			<span style="text-align:left;">{{ scoreEntry.name }}</span>
-			<span style="text-align:right;">{{ scoreEntry.score }}</span>
-		</div>
-  </li>
+	<ng-container *ngFor="let scoreEntry of currentLeaderboard">
+		<li [ngClass]="isLatestScore(scoreEntry) && isLeaderboardPage() ? 'latest-score' : ''">
+			<div class="list-item">
+				<span style="text-align:left;">{{ scoreEntry.name }}</span>
+				<span style="text-align:right;">{{ scoreEntry.score }}</span>
+			</div>
+		</li>
+	</ng-container>
 </ol>
