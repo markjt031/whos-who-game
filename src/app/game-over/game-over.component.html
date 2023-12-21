@@ -7,7 +7,9 @@
             <input formControlName="name" type="text" name="name" id="name" class="text-input"/>
             <div *ngIf="submitted && nameForm.controls['name'].errors">
                 <div *ngIf="nameForm.controls['name'].errors['required']" class="error">Name is a required field</div>
+                
             </div>
+            <div *ngIf="nameForm.touched && nameForm.controls['name'].errors && nameForm.controls['name'].errors['maxlength']" class="error">Name must be 12 characters or less</div>
             <button type="submit" class="button">Submit</button>
         </form>
     </div>

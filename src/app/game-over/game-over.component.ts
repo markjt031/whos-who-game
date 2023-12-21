@@ -18,7 +18,7 @@ export class GameOverComponent implements OnInit {
   renderScoreBreakdown: boolean= true
 
   nameForm: FormGroup = new FormGroup({
-    name: new FormControl<string>("", [Validators.required]),
+    name: new FormControl<string>("", [Validators.required, Validators.maxLength(12)]),
   });
 
   constructor(private gameService: GameService, private leaderBoardService: LeaderboardService, private router: Router) { }
