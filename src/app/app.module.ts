@@ -16,19 +16,21 @@ import { AudioService } from "src/services/audioService";
 import { ProgressBarComponent } from './game-page/game/progress-bar/progress-bar.component';
 import { GameOverComponent } from './game-over/game-over.component';
 import { GamePageComponent } from './game-page/game-page.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { LeaderboardComponent } from './leaderboard-page/leaderboard/leaderboard.component';
 import { BarAnimationComponent } from './loading/bar-animation/bar-animation.component';
 import { LoadingComponent } from './loading/loading.component';
+import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
 
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "game", component: GamePageComponent},
-  { path: "gameover", component: GameOverComponent}
+  { path: "gameover", component: GameOverComponent},
+  { path: "leaderboard", component: LeaderboardPageComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SettingsComponent, AudioPlayerComponent, AudioPlayerButtonsComponent, GameComponent, QuestionComponent, ProgressBarComponent, GameOverComponent, GamePageComponent, LeaderboardComponent, BarAnimationComponent, LoadingComponent],
+  declarations: [AppComponent, HomeComponent, SettingsComponent, AudioPlayerComponent, AudioPlayerButtonsComponent, GameComponent, QuestionComponent, ProgressBarComponent, GameOverComponent, GamePageComponent, LeaderboardComponent, BarAnimationComponent, LoadingComponent, LeaderboardPageComponent],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes)],
   providers: [GameService, AudioService],
   bootstrap: [AppComponent]

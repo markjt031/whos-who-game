@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import ScoreEntry from 'src/models/scoreEntry'
 
-
 @Injectable({
     providedIn: 'root'
 })
@@ -10,6 +9,9 @@ import ScoreEntry from 'src/models/scoreEntry'
 export class LeaderboardService{
     private leaderBoardSource=new BehaviorSubject<ScoreEntry[]>([])
     leaderBoard=this.leaderBoardSource.asObservable()
+    
+    private latestScoreSource = new BehaviorSubject<ScoreEntry | undefined>(undefined)
+    latestScore = this.latestScoreSource.asObservable()
 
     private hasDummyData: boolean = false;
 
@@ -18,6 +20,8 @@ export class LeaderboardService{
         let currentBoard=this.leaderBoardSource.value
         let newBoard=[...currentBoard, entry].sort((a, b)=>b.score-a.score)
         this.leaderBoardSource.next(newBoard)
+
+        this.latestScoreSource.next(entry)
     }
 
     setDummyData() {
