@@ -26,7 +26,6 @@ export class LeaderboardComponent implements OnInit {
     this.leaderboardService.latestScore.subscribe(
       (latestScore) => (this.latestScore = latestScore)
     );
-    this.leaderboardService.setDummyData();
   }
 
   passToggleLeaderboard() {

@@ -26,12 +26,13 @@ export class LeaderboardService{
 
     setDummyData() {
         if (!this.hasDummyData) {
-            console.log('dummydata')
+            console.log('dummy data added')
             let dummyBoard = [
-                { name: "PlayerOne", score: 700 },
-                { name: "PlayerTwo", score: 500 },
-                { name: "PlayerThree", score: 300 },
-                { name: "PlayerFour", score: -100 }
+                { name: "Helena", score: 99999 },
+                { name: "Kenneth", score: 99999 },
+                { name: "Jessica", score: 1200 },
+                { name: "Drew", score: 400 },
+                { name: "Biff", score: 0 }
             ]
             this.leaderBoardSource.next(dummyBoard)
             this.hasDummyData = true;
