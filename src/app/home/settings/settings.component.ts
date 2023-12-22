@@ -28,12 +28,12 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.settingsData.genre.subscribe((genre) => {
       this.currentGenre = genre
-      this.settingsForm.setValue({ selectedGenre: this.currentGenre })
+      this.settingsForm.patchValue({ selectedGenre: this.currentGenre })
     })
 
     this.settingsData.mode.subscribe((mode) => {
       this.currentMode = mode
-      this.settingsForm.setValue({ selectedMode: this.currentMode });
+      this.settingsForm.patchValue({ selectedMode: this.currentMode });
     })
   }
 
