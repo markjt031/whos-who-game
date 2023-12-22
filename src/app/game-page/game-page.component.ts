@@ -92,7 +92,6 @@ export class GamePageComponent implements OnInit {
       token: this.token,
       endpoint: `playlists/${playlistID}`
     }).then((playlist)=>{
-      console.log(playlist)
       let songs=playlist.tracks.items
         .map((item: any)=>item.track)
         .filter((song: any)=>song.preview_url)

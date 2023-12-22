@@ -22,6 +22,7 @@
 .volume-slider{
     -webkit-appearance: none;
     background: transparent;
+    touch-action: none;
 }
 
 .volume-slider::-webkit-slider-runnable-track{

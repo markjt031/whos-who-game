@@ -48,7 +48,6 @@ export class GameComponent implements OnInit {
       mode='title'
     }
     if (mode === 'title'){
-      console.log(this.songs.length)
       for (let i=0; i<this.songs.length; i++){
         this.questions.push({
           id: i,
