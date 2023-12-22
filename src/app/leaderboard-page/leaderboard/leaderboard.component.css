@@ -4,9 +4,7 @@
 	max-height: 200px;
 	overflow: auto;
 }
-	/* max-height: 100px;
-	overflow: auto;
-}*/
+
 ::-webkit-scrollbar{    
 	width: 12px;
 }

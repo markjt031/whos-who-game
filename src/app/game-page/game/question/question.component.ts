@@ -25,7 +25,6 @@ export class QuestionComponent implements OnInit {
   constructor(private gameService: GameService, private audioService: AudioService, private router: Router) { }
   
   ngOnInit(): void {
-   console.log(this.question)
    this.timer=setInterval(()=>{
     this.time++
    }, 1000)
