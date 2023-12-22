@@ -43,12 +43,11 @@ export class QuestionComponent implements OnInit {
     }
     if (this.answerForm.valid){
       this.clearTimer()
-      console.log(this.time)
       this.answer=this.answerForm.controls['answer'].value.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,"")
       this.gameService.addAnswer(this.answer)
       if (this.question){
-        if (this.answer===this.question?.answer){
-          let points=this.calculateTimeBonus(this.time)+100
+        if (this.question?.answer.includes(this.answer)){
+          let points=this.calculateTimeBonus(this.time)+this.calculateMatchScore(this.answer,this.question.answer)
           this.gameService.incrementScore(points)
           this.gameService.incrementNumberCorrect()
         }
@@ -71,8 +70,8 @@ export class QuestionComponent implements OnInit {
     this.clearTimer()
     this.gameService.addAnswer(this.answer)
     if (this.question){
-      if (this.answer===this.question?.answer){
-        let points=this.calculateTimeBonus(this.time)+100
+      if (this.question?.answer.includes(this.answer)){
+        let points=this.calculateTimeBonus(this.time)+this.calculateMatchScore(this.answer,this.question.answer)
         this.gameService.incrementScore(points)
         this.gameService.incrementNumberCorrect()
       }
@@ -83,5 +82,16 @@ export class QuestionComponent implements OnInit {
     this.gameService.setComplete(true)
     this.router.navigateByUrl('/gameover')
   }
-
+  calculateMatchScore(userInput: string, actualAnswer: string){
+    let inputWords=userInput.split(" ")
+    let answerWords=actualAnswer.split(" ")
+    let numberOfWordsMatched=0
+    for (let i=0; i<inputWords.length; i++){
+      if (actualAnswer[i]===inputWords[i]){
+        numberOfWordsMatched++
+      }
+    }
+    return Math.ceil(numberOfWordsMatched/answerWords.length)*100
+    
+  }
 }
