@@ -84,13 +84,18 @@ export class QuestionComponent implements OnInit {
   }
   calculateMatchScore(userInput: string, actualAnswer: string){
     let inputWords=userInput.split(" ")
+    console.log(inputWords)
     let answerWords=actualAnswer.split(" ")
+    console.log(answerWords)
     let numberOfWordsMatched=0
     for (let i=0; i<inputWords.length; i++){
-      if (actualAnswer[i]===inputWords[i]){
+      if (answerWords[i]===inputWords[i]){
         numberOfWordsMatched++
       }
     }
+    console.log(numberOfWordsMatched)
+    console.log(answerWords.length)
+    console.log(Math.ceil(numberOfWordsMatched/answerWords.length)*100)
     return Math.ceil(numberOfWordsMatched/answerWords.length)*100
     
   }
