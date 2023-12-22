@@ -18,6 +18,7 @@ export class GameComponent implements OnInit {
  currentQuestionIndex: number=0
  questions: Question[]=[]
  score: number=0
+ numberCorrect: number=0
  receivedAnswer: string = ""
  gameComplete: boolean = false;
  mode: string = ""

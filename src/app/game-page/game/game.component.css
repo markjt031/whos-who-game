@@ -4,7 +4,7 @@
     align-items: center;
 }
 .game-container{
-    transform: translateY(30%);
+    /* transform: translateY(30%); */
     width: 80%;
     margin: 0 auto;
     background-color: rgba(var(--color-secondary),0.85);
@@ -15,6 +15,7 @@
 .title, .score{
     text-align: center;
     text-shadow: 1px 1px 1px #000;
+    margin: 20px auto 10px auto;
 }
 .question{
     width: 80%;

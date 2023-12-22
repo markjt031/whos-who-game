@@ -4,6 +4,8 @@
 	justify-content: flex-end;
 
 	padding: 5px 40px 10px 0;
+	background-color: rgba(var(--color-bg-dark), .8);
+	padding: 10px 40px 10px 10px;
 	gap: 3em;
 
 	font-size: 140%;

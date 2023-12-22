@@ -13,15 +13,22 @@ export class AudioPlayerComponent implements OnInit {
 
   player: Howl | undefined =undefined
 
-  
+  currentVolume = 0.5;
+
+  updateVolume() {
+    this.player?.volume(this.currentVolume)
+    this.audioService.updateVolume(this.currentVolume)
+  }
+
   constructor(private audioService: AudioService) { }
 
   ngOnInit(): void {
+    this.audioService.volume.subscribe(volume=>this.currentVolume=volume)
     this.player= new Howl({
       src: [this.trackUrl],
       format: ['mp3'],
       autoplay: false,
-      volume: 0.5
+      volume: this.currentVolume
     })
     this.audioService.setPlayer(this.player)
   }

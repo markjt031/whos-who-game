@@ -20,7 +20,6 @@ export class LeaderboardService{
         let currentBoard=this.leaderBoardSource.value
         let newBoard=[...currentBoard, entry].sort((a, b)=>b.score-a.score)
         this.leaderBoardSource.next(newBoard)
-
         this.latestScoreSource.next(entry)
     }
 

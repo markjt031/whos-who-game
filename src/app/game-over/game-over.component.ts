@@ -15,14 +15,18 @@ export class GameOverComponent implements OnInit {
   name: string= ""
   submitted: boolean= false
   isComplete: boolean = false
+  renderScoreBreakdown: boolean= true
 
   nameForm: FormGroup = new FormGroup({
-    name: new FormControl<string>("", [Validators.required]),
+    name: new FormControl<string>("", [Validators.required, Validators.maxLength(12)]),
   });
 
   constructor(private gameService: GameService, private leaderBoardService: LeaderboardService, private router: Router) { }
 
   ngOnInit(): void {
+    setTimeout(()=>{
+      this.renderScoreBreakdown=false
+    }, 5000)
     this.gameService.score.subscribe(score=>this.score=score)
     this.gameService.isComplete.subscribe(isComplete=>this.isComplete=isComplete)
     if (!this.isComplete){
@@ -38,6 +42,7 @@ export class GameOverComponent implements OnInit {
     }
     else{
       this.win=false
+      this.gameService.updateWin(false)
     }
   }
   onSubmit(){
@@ -45,9 +50,10 @@ export class GameOverComponent implements OnInit {
     if (!this.nameForm.valid){
       return
     }
+    console.log('here')
     this.leaderBoardService.addEntry({name: this.nameForm.controls['name'].value, score: this.score})
     this.gameService.resetGame()
-    this.router.navigateByUrl("/leaderboard")
     this.submitted=false
+    this.router.navigateByUrl("/leaderboard")
   }
 }

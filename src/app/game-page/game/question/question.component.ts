@@ -25,7 +25,6 @@ export class QuestionComponent implements OnInit {
   constructor(private gameService: GameService, private audioService: AudioService, private router: Router) { }
   
   ngOnInit(): void {
-   console.log(this.question)
    this.timer=setInterval(()=>{
     this.time++
    }, 1000)
@@ -51,6 +50,7 @@ export class QuestionComponent implements OnInit {
         if (this.answer===this.question?.answer){
           let points=this.calculateTimeBonus(this.time)+100
           this.gameService.incrementScore(points)
+          this.gameService.incrementNumberCorrect()
         }
       }
       this.gameService.increaseCurrentQuestionIndex()
@@ -74,6 +74,7 @@ export class QuestionComponent implements OnInit {
       if (this.answer===this.question?.answer){
         let points=this.calculateTimeBonus(this.time)+100
         this.gameService.incrementScore(points)
+        this.gameService.incrementNumberCorrect()
       }
     }
     this.audioService.stopPlayer()

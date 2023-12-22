@@ -1,12 +1,19 @@
 <div class="container">
-    <h1>{{win ? 'You Win' : "Game Over"}}</h1>
-    <h2>Your score: {{score}}</h2>
-    <form (ngSubmit)="onSubmit()" [formGroup]="nameForm" autocomplete="off">
-        <label for="name">Enter your name:</label>
-        <input formControlName="name" type="text" name="name" id="name" class="text-input"/>
-        <div *ngIf="submitted && nameForm.controls['name'].errors">
-            <div *ngIf="nameForm.controls['name'].errors['required']" class="error">Name is a required field</div>
-        </div>
-        <button type="submit" class="button">Submit</button>
-    </form>
+    <div class="game-over" *ngIf="!renderScoreBreakdown">
+        <h1>{{win ? 'You Win' : "Game Over"}}</h1>
+        <h2>Your score: {{score}}</h2>
+        <form (ngSubmit)="onSubmit()" [formGroup]="nameForm" autocomplete="off">
+            <label for="name">Enter your name:</label>
+            <input formControlName="name" type="text" name="name" id="name" class="text-input"/>
+            <div *ngIf="submitted && nameForm.controls['name'].errors">
+                <div *ngIf="nameForm.controls['name'].errors['required']" class="error">Name is a required field</div>
+                
+            </div>
+            <div *ngIf="nameForm.touched && nameForm.controls['name'].errors && nameForm.controls['name'].errors['maxlength']" class="error">Name must be 12 characters or less</div>
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div>
+    <div class="score-breakdown" *ngIf="renderScoreBreakdown">
+        <app-score-breakdown></app-score-breakdown>
+    </div>
 </div>
