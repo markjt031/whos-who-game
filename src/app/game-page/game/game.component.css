@@ -4,7 +4,7 @@
     align-items: center;
 }
 .game-container{
-    /* transform: translateY(30%); */
+    
     width: 80%;
     margin: 0 auto;
     background-color: rgba(var(--color-secondary),0.85);

@@ -20,6 +20,7 @@ export class LeaderboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.leaderboardService.setDummyData()
     this.leaderboardService.leaderBoard.subscribe(
       (leaderBoard) => (this.currentLeaderboard = leaderBoard)
     );
