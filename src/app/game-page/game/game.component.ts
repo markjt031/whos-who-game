@@ -3,6 +3,7 @@ import Question from 'src/models/question';
 import Song from 'src/models/song';
 import { AudioService } from 'src/services/audioService';
 import { GameService } from 'src/services/gameService';
+import { SettingsService } from 'src/services/settings.service';
 
 
 @Component({
@@ -13,29 +14,33 @@ import { GameService } from 'src/services/gameService';
 export class GameComponent implements OnInit {
  @Input() songs: Song[]=[]
 
- //Pull this from config when config is set up
- @Input() mode: string=""
  currentQuestion: Question | undefined=undefined
  currentQuestionIndex: number=0
  questions: Question[]=[]
  score: number=0
  receivedAnswer: string = ""
  gameComplete: boolean = false;
+ mode: string = ""
 
-  constructor(private gameService: GameService, private audioService: AudioService) {}
+  constructor(
+    private gameService: GameService, 
+    private audioService: AudioService, 
+    private settingsService: SettingsService
+  ) {}
 
   ngOnInit(): void {
     this.gameService.setComplete(false)
     this.audioService.songsList.subscribe(songsList=>this.songs=songsList)
+    this.settingsService.mode.subscribe(mode => this.mode = mode.toLowerCase())
     this.generateQuestions(this.mode)
     this.gameService.updateQuestions(this.questions)
     this.gameService.currentQuestionIndex.subscribe(currentQuestionIndex=>this.currentQuestionIndex=currentQuestionIndex)
     this.gameService.updateCurrentQuestion(this.currentQuestionIndex)
     this.gameService.currentQuestion.subscribe(currentQuestion=>this.currentQuestion=currentQuestion) 
     this.gameService.score.subscribe(score=>this.score=score)
+    
   }
-  //this will take the mode from the config when the config is set up
-  //all it does is turn the songs into questions with an answer and numbered id
+  
   generateQuestions(mode: string){
     if (!this.mode){
       this.mode='title'

@@ -12,22 +12,11 @@ import { AudioService } from "src/services/audioService";
 export class HomeComponent implements OnInit {
   constructor(private audioService: AudioService) {}
 
-  settingsShown: boolean = true
   leaderboardShown: boolean = false
 
   ngOnInit(): void {}
 
-  toggleSettings() {
-    this.settingsShown = !this.settingsShown
-    if (this.leaderboardShown && this.settingsShown) { 
-      this.toggleLeaderboard()
-    }
-  }
-
   toggleLeaderboard() {
     this.leaderboardShown = !this.leaderboardShown
-    if (this.leaderboardShown && this.settingsShown) {
-      this.toggleSettings()
-    }
   }
 }

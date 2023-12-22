@@ -7,19 +7,14 @@
       (toggleLeaderboardEvent)="toggleLeaderboard()"
     ></app-leaderboard>
   </div>
-  <div class="nav-item">
-    <div class="item-header" (click)="toggleSettings()">Settings</div>
+</div>
+
+<div class="body">
+  <div class="main">
+    <h1 class="title">Who's Who</h1>
+    <h3>Listen to the song.  Make a guess!</h3>
     <app-settings
-      class="item-body settings-body"
-      *ngIf="settingsShown"
-      (toggleSettingsEvent)="toggleSettings()"
+      class="settings-body"
     ></app-settings>
   </div>
 </div>
-
-<div class="main">
-  <h1 class="title">Who's Who</h1>
-  <h3>Listen to the song.  Guess the name!</h3>
-  <button class="button" routerLink="game">Play!</button>
-</div>
-
