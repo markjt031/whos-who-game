@@ -1,18 +1,37 @@
 <form class="settings" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
-	<div>
-		<label for="selectedGenre">Genre</label>
-	</div>
-	<div>
-		<select formControlName="selectedGenre">
-			<option *ngFor="let genre of genres" [value]="genre">
-				{{ genre }}
-			</option>
-		</select>
-	</div>
-	<div>
-		<button class="button" [ngClass]="settingsForm.invalid ? 'disabled' : ''" (click)="showErrors()">Save</button>
-	</div>
-	<ng-container *ngIf="showingErrors && !settingsForm.controls['selectedGenre'].dirty">
-		<div class="error">Please select a genre</div>
-	</ng-container>
+  <div class="settings-row">
+    <div class="settings-item">
+      <label for="selectedGenre">Genre</label>
+      <select formControlName="selectedGenre">
+        <option *ngFor="let genre of genres" [value]="genre">
+          {{ genre }}
+        </option>
+      </select>
+    </div>
+    <div class="settings-item">
+      <label for="selectedMode">Mode</label>
+      <select formControlName="selectedMode">
+        <option *ngFor="let mode of modes" [value]="mode">
+          {{ mode }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <button class="button" [ngClass]="settingsForm.invalid ? 'disabled' : ''">
+      Play!
+    </button>
+  </div>
 </form>
+<div class="errors">
+	<ng-container
+		*ngIf="showingErrors && !settingsForm.controls['selectedGenre'].dirty"
+	>
+		<div>Please select a genre</div>
+	</ng-container>
+	<ng-container
+		*ngIf="showingErrors && !settingsForm.controls['selectedMode'].dirty"
+	>
+		<div>Please select a mode</div>
+	</ng-container>
+</div>

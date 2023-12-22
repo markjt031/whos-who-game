@@ -43,6 +43,7 @@
 
   .label {
     margin-top: 5px;
+    font-family: 'Acme', sans-serif;
     font-size: 1.2rem;
     color: rgba(var(--color-bg-dark));
   }

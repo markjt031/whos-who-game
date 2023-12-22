@@ -20,14 +20,12 @@ export class LeaderboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.leaderboardService.setDummyData();
     this.leaderboardService.leaderBoard.subscribe(
       (leaderBoard) => (this.currentLeaderboard = leaderBoard)
     );
     this.leaderboardService.latestScore.subscribe(
       (latestScore) => (this.latestScore = latestScore)
     );
-    
   }
 
   passToggleLeaderboard() {
