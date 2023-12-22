@@ -47,7 +47,8 @@ export class QuestionComponent implements OnInit {
       this.gameService.addAnswer(this.answer)
       if (this.question){
         if (this.question?.answer.includes(this.answer)){
-          let points=this.calculateTimeBonus(this.time)+this.calculateMatchScore(this.answer,this.question.answer)
+          let multiplier=this.calculatePercentMatch(this.answer,this.question.answer)
+          let points=(this.calculateTimeBonus(this.time)+100)*multiplier
           this.gameService.incrementScore(points)
           this.gameService.incrementNumberCorrect()
         }
@@ -71,7 +72,8 @@ export class QuestionComponent implements OnInit {
     this.gameService.addAnswer(this.answer)
     if (this.question){
       if (this.question?.answer.includes(this.answer)){
-        let points=this.calculateTimeBonus(this.time)+this.calculateMatchScore(this.answer,this.question.answer)
+        let multiplier=this.calculatePercentMatch(this.answer,this.question.answer)
+        let points=(this.calculateTimeBonus(this.time)+100)*multiplier
         this.gameService.incrementScore(points)
         this.gameService.incrementNumberCorrect()
       }
@@ -82,7 +84,7 @@ export class QuestionComponent implements OnInit {
     this.gameService.setComplete(true)
     this.router.navigateByUrl('/gameover')
   }
-  calculateMatchScore(userInput: string, actualAnswer: string){
+  calculatePercentMatch(userInput: string, actualAnswer: string){
     let inputWords=userInput.split(" ")
     console.log(inputWords)
     let answerWords=actualAnswer.split(" ")
@@ -95,8 +97,12 @@ export class QuestionComponent implements OnInit {
     }
     console.log(numberOfWordsMatched)
     console.log(answerWords.length)
+    //add .2 to multiplier for full match
+    if (numberOfWordsMatched===answerWords.length){
+      return Math.ceil(numberOfWordsMatched/answerWords.length)+ .2
+    }
     console.log(Math.ceil(numberOfWordsMatched/answerWords.length)*100)
-    return Math.ceil(numberOfWordsMatched/answerWords.length)*100
+    return Math.ceil(numberOfWordsMatched/answerWords.length)
     
   }
 }
