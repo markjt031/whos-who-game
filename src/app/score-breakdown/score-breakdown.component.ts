@@ -14,10 +14,8 @@ export class ScoreBreakdownComponent implements OnInit {
   constructor(private gameService: GameService, private router: Router) { }
 
   ngOnInit() {
-    // Simulate updates after a quiz or game using setTimeout
       this.gameService.numberCorrect.subscribe(numberCorrect=>this.numberCorrect=numberCorrect)
-      console.log(this.numberCorrect)
+      this.gameService.timeBonus.subscribe(timeBonus=>this.timeBonus=timeBonus)
       this.gameService.score.subscribe(score => this.score=score)
-      this.timeBonus= this.score-(100*this.numberCorrect)
   }
 }

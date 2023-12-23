@@ -45,20 +45,25 @@ export class QuestionComponent implements OnInit {
       this.clearTimer()
       this.answer=this.answerForm.controls['answer'].value.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,"")
       this.gameService.addAnswer(this.answer)
-      if (this.question){
-        if (this.question?.answer.includes(this.answer)){
-          let multiplier=this.calculatePercentMatch(this.answer,this.question.answer)
-          let points=(this.calculateTimeBonus(this.time)+100)*multiplier
-          this.gameService.incrementScore(points)
-          this.gameService.incrementNumberCorrect()
-        }
-      }
+      this.updateScore()
       this.gameService.increaseCurrentQuestionIndex()
       this.question && this.gameService.updateCurrentQuestion(this.question.id+1)
       this.audioService.stopPlayer()
       this.audioService.updateIsPlaying(false)
       this.time=0
       this.submitted=false
+    }
+  }
+  updateScore(){
+    if (this.question){
+      if (this.question?.answer.includes(this.answer)){
+        let multiplier=this.calculatePercentMatch(this.answer,this.question.answer)
+        let timeBonus=this.calculateTimeBonus(this.time)*multiplier
+        let points=timeBonus+100*multiplier
+        this.gameService.incrementScore(points)
+        this.gameService.incrementTimeBonus(timeBonus)
+        this.gameService.incrementNumberCorrect()
+      }
     }
   }
   calculateTimeBonus(time: number){
@@ -70,14 +75,7 @@ export class QuestionComponent implements OnInit {
   finishGame(){
     this.clearTimer()
     this.gameService.addAnswer(this.answer)
-    if (this.question){
-      if (this.question?.answer.includes(this.answer)){
-        let multiplier=this.calculatePercentMatch(this.answer,this.question.answer)
-        let points=(this.calculateTimeBonus(this.time)+100)*multiplier
-        this.gameService.incrementScore(points)
-        this.gameService.incrementNumberCorrect()
-      }
-    }
+    this.updateScore()
     this.audioService.stopPlayer()
     this.audioService.updateIsPlaying(false)
     this.time=0
