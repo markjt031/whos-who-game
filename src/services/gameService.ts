@@ -7,6 +7,7 @@ import Question from 'src/models/question'
 })
 //Game service tracks questions, scores, answers, and current question
 export class GameService {
+
     private questionSource= new BehaviorSubject<Question[]>([])
     questions=this.questionSource.asObservable()
     
@@ -30,6 +31,9 @@ export class GameService {
 
     private numberCorrectSource = new BehaviorSubject<number>(0)
     numberCorrect=this.numberCorrectSource.asObservable()
+    
+    private timeBonusSource= new BehaviorSubject<number>(0)
+    timeBonus=this.timeBonusSource.asObservable()
 
     updateQuestions(questions: Question[]){
         this.questionSource.next(questions)
@@ -63,6 +67,12 @@ export class GameService {
         const updatedScore=currentScore+score
         this.scoreSource.next(updatedScore)
     }
+    incrementTimeBonus(timeBonus: number){
+        const current=this.timeBonusSource.value
+        const updatedScore=current+timeBonus
+        this.timeBonusSource.next(updatedScore)
+    }
+
     updateWin(win: boolean){
         this.isWinSource.next(win)
     }

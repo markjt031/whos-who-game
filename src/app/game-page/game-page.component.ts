@@ -40,9 +40,9 @@ export class GamePageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading=true
     this.settingsService.genre.subscribe((genre)=>this.selectedGenre=genre)
-    // if (!this.selectedGenre){
-    //   this.router.navigateByUrl("/")
-    // }
+    if (!this.selectedGenre){
+      this.router.navigateByUrl("/")
+    }
     this.authLoading = true;
     const storedTokenString = localStorage.getItem(TOKEN_KEY);
     if (storedTokenString) {
