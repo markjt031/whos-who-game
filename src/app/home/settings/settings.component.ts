@@ -10,7 +10,7 @@ import { SettingsService } from "src/services/settings.service";
 })
 export class SettingsComponent implements OnInit {
 
-  genres: string[] = ["Rock", "Rap", "Pop", "Country", "Alternative"];
+  genres: string[] = ["Rock", "Rap", "Pop", "Country", "Alternative", "Classic Rock", "Emo", "Christmas"];
   currentGenre: string = "";
 
   modes: string[] = ["Title", "Artist"]

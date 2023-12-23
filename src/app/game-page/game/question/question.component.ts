@@ -43,7 +43,7 @@ export class QuestionComponent implements OnInit {
     }
     if (this.answerForm.valid){
       this.clearTimer()
-      this.answer=this.answerForm.controls['answer'].value.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,"")
+      this.answer=this.answerForm.controls['answer'].value.toLowerCase().replace(/[.,\/#!$%\^\*;:{}=\-_`~()']/g,"")
       this.gameService.addAnswer(this.answer)
       this.updateScore()
       this.gameService.increaseCurrentQuestionIndex()
@@ -56,8 +56,10 @@ export class QuestionComponent implements OnInit {
   }
   updateScore(){
     if (this.question){
-      if (this.question?.answer.includes(this.answer)){
-        let multiplier=this.calculatePercentMatch(this.answer,this.question.answer)
+      let input=this.convertAmpersands(this.answer)
+      let answerNoAmpersands=this.convertAmpersands(this.question?.answer)
+      if (answerNoAmpersands.includes(input)){
+        let multiplier=this.calculatePercentMatch(input, answerNoAmpersands)
         let timeBonus=this.calculateTimeBonus(this.time)*multiplier
         let points=timeBonus+100*multiplier
         this.gameService.incrementScore(points)
@@ -74,6 +76,7 @@ export class QuestionComponent implements OnInit {
   }
   finishGame(){
     this.clearTimer()
+    this.answer=this.answerForm.controls['answer'].value.toLowerCase().replace(/[.,\/#!$%\^\*;:{}=\-_`~()']/g,"")
     this.gameService.addAnswer(this.answer)
     this.updateScore()
     this.audioService.stopPlayer()
@@ -83,6 +86,7 @@ export class QuestionComponent implements OnInit {
     this.router.navigateByUrl('/gameover')
   }
   calculatePercentMatch(userInput: string, actualAnswer: string){
+    
     let inputWords=userInput.split(" ")
     console.log(inputWords)
     let answerWords=actualAnswer.split(" ")
@@ -101,6 +105,10 @@ export class QuestionComponent implements OnInit {
     }
     console.log(Math.ceil(numberOfWordsMatched/answerWords.length)*100)
     return Math.ceil(numberOfWordsMatched/answerWords.length)
+    
+  }
+  convertAmpersands(input: string){
+    return input.replace('&', 'and')
     
   }
 }

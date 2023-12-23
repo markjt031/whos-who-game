@@ -26,7 +26,7 @@ export class GamePageComponent implements OnInit {
   playlists={
     'alternative': "37i9dQZF1DX9GRpeH4CL0S",
     'christmas': "37i9dQZF1DX6R7QUWePReA",
-    'classicRock': "37i9dQZF1DXdOEFt9ZX0dh",
+    'classic rock': "37i9dQZF1DXdOEFt9ZX0dh",
     'emo': "37i9dQZF1DX9wa6XirBPv8",
     'rap': "37i9dQZF1EIgbjUtLiWmHt",
     'pop': "37i9dQZF1EQncLwOalG3K7",
@@ -99,8 +99,8 @@ export class GamePageComponent implements OnInit {
         .sort(()=>Math.random()-0.5)
       for (let i=0; i<10; i++){
         this.songs.push({
-          name: songs[i].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,""),
-          artist: songs[i].artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()']/g,""),
+          name: songs[i].name.replace(/[.,\/#!$%\^\*;:{}=\-_`~()']/g,""),
+          artist: songs[i].artists[0].name.replace(/[.,\/#!$%\^\*;:{}=\-_`~()']/g,""),
           preview_url: songs[i].preview_url
         })
       }
@@ -127,6 +127,15 @@ export class GamePageComponent implements OnInit {
         break
       case 'pop':
         this.getPlaylist(this.playlists['pop'])
+        break
+      case 'classic rock':
+        this.getPlaylist(this.playlists['classic rock'])
+        break
+      case 'emo':
+        this.getPlaylist(this.playlists['emo'])
+        break
+      case 'christmas':
+        this.getPlaylist(this.playlists['christmas'])
         break
       default:
         this.getPlaylist(this.playlists['rock'])
